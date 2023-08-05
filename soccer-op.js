@@ -1,15 +1,26 @@
+/*
+# Example code that fetches odds from the oddsportal 
+# website and derives true probability from odds to find
+# edge and value in soccer markets.
+# It also sets up a telegram bot who sends a notification
+# everytime a value has been found from predefined min value settings.
+# Includes fractional kelly calculations
+*/
+
+
+
 import { utcFormat } from 'd3';
 import puppeteer from 'puppeteer';
 import odds from 'odds-converter';
 import moment from 'moment';
 
 import TelegramBot from 'node-telegram-bot-api';
-/*TELEGRAM SEND NOTIFICATION */
+
 
 // replace the value below with the Telegram token you receive from @BotFather
-const token = '2110983038:AAHVD8lXT9aLf9EdqECXSsjg-_DfIeAE1Gk';
+const token = '';
 
-var chatId = -1001441593078;
+var chatId = ;
 
 // Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(token, {polling: true});
@@ -63,7 +74,9 @@ function getMatches() {
         let time = moment(t).format('YYYY-MM-DD HH:mm:ss')
 
         let diff = moment(time).diff(utc_match_time, 'minutes')
-
+     
+        // checks for matches that are in the coming 60 minutes
+        // reasons for only 60 minutes is because you want to have liquid markets
         if (diff >= -60 & diff <= 0) {
 
           const data = await page.evaluate(() => {
@@ -148,7 +161,7 @@ function getMatches() {
               "Kelly: " + kelly_away
             )
           } else {
-            //console.log("no value bet found")
+            console.log("no value bet found")
             }
         }
       } else {
@@ -159,7 +172,7 @@ function getMatches() {
         console.log(e)
       }
     } else {
-      // console.log("Not a match link, skipping..." + res)
+       console.log("Not a match link, skipping..." + res)
     }
   }
 
