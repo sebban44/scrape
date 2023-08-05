@@ -1,10 +1,10 @@
 /*
 # Example code that fetches odds from the oddsportal 
 # website and derives true probability from odds to find
-# edge and value in soccer markets.
+# edge and value in soccer markets from the efficient market hypothesis.
 # It also sets up a telegram bot who sends a notification
 # everytime a value has been found from predefined min value settings.
-# Includes fractional kelly calculations
+# Includes fractional kelly calculations for optimal bankroll strategy.
 */
 
 
